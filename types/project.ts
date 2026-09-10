@@ -10,12 +10,14 @@ export type ProjectStatus =
   | "active"
   | "near-completion"
   | "in-development"
-  | "experimental";
+  | "experimental"
+  | "production-ready";
 
 export type ProjectCategory =
   | "motorsport"
   | "ai-ml"
-  | "simulation-game";
+  | "simulation-game"
+  | "intelligence-platform";
 
 /** A single verified, measured value — spec §30. Never populate this
  *  with an estimated or invented number; omit the metric instead. */

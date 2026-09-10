@@ -27,6 +27,7 @@ const requiredSlugs = [
   'f1-race-manager',
   'ea-fc-intelligence',
   'vyaparpulse',
+  'ignict',
 ];
 
 for (const slug of requiredSlugs) {
@@ -68,6 +69,7 @@ const visuals = [
   'components/work/TelemetryFlowVisual.tsx',
   'components/work/NumericalDecomposition.tsx',
   'components/work/RaceMindSessionVisual.tsx',
+  'components/work/IgnictMatchingVisual.tsx',
   'components/work/ProjectIndexRow.tsx',
   'components/home/SignatureVisual.tsx',
   'components/home/visual/SignatureCanvas.tsx',

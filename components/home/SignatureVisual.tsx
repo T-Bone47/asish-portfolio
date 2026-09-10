@@ -180,7 +180,7 @@ export function SignatureVisual() {
   return (
     <div ref={containerRef} className="border-x border-b border-border-subtle py-12">
       <Container as="div">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-sm bg-background border border-border-subtle">
           <SignatureCanvas />
           <svg
             ref={svgRef}
@@ -193,7 +193,7 @@ export function SignatureVisual() {
           >
             <defs>
               <pattern id="sig-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border-subtle)" strokeWidth="1" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="1" />
               </pattern>
               {/* Radial glow for probe marker */}
               <radialGradient id="probe-glow" cx="50%" cy="50%" r="50%">
@@ -201,6 +201,9 @@ export function SignatureVisual() {
                 <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
               </radialGradient>
             </defs>
+
+            {/* Base solid background to prevent browser contrast/inversion wash */}
+            <rect width="1200" height="420" fill="#0a0b0d" />
 
             {/* Background grid */}
             <rect width="1200" height="420" fill="url(#sig-grid)" />

@@ -90,7 +90,7 @@ export function Header() {
                   <span>{item.label}</span>
                   {item.href === "/work" && (
                     <span className="text-[9px] text-foreground-faint tabular-nums">
-                      /06
+                      /07
                     </span>
                   )}
                   {isActive && (

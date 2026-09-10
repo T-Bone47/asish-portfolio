@@ -11,17 +11,18 @@ const STATUS_LABEL: Record<ProjectStatus, string> = {
   "near-completion": "NEAR COMPLETION",
   "in-development": "IN DEVELOPMENT",
   experimental: "EXPERIMENTAL",
+  "production-ready": "PRODUCTION-READY",
 };
 
 /**
- * Deliberately restrained: only "active" gets the accent (telemetry
+ * Deliberately restrained: only "active" and "production-ready" get the accent (telemetry
  * green is reserved for "active state, telemetry, system status" per
  * spec §5 — a status badge for every other value shouldn't invent four
  * more colors just to look busier). Every other status reads through
  * text and a neutral dot, not a color-coded traffic light.
  */
 export function StatusBadge({ status, className }: { status: ProjectStatus; className?: string }) {
-  const isActive = status === "active";
+  const isActive = status === "active" || status === "production-ready";
 
   return (
     <span

@@ -11,6 +11,7 @@ import { MetricGrid } from "@/components/work/MetricGrid";
 import { TelemetryFlowVisual } from "@/components/work/TelemetryFlowVisual";
 import { NumericalDecomposition } from "@/components/work/NumericalDecomposition";
 import { RaceMindSessionVisual } from "@/components/work/RaceMindSessionVisual";
+import { IgnictMatchingVisual } from "@/components/work/IgnictMatchingVisual";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -38,6 +39,7 @@ const systemCodes: Record<string, string> = {
   "f1-race-manager": "SYS.SIM-04",
   "ea-fc-intelligence": "SYS.AI-05",
   "vyaparpulse": "SYS.ENG-06",
+  "ignict": "SYS.07",
 };
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -113,6 +115,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.slug === "live-f1-intelligence" && <TelemetryFlowVisual />}
         {project.slug === "f1-lap-time-simulator" && <NumericalDecomposition />}
         {project.slug === "racemind-ai" && <RaceMindSessionVisual />}
+        {project.slug === "ignict" && <IgnictMatchingVisual />}
 
         {project.implementation && (
           <CaseStudySection label="Implementation">

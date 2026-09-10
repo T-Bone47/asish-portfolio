@@ -342,6 +342,100 @@ export const projects: Project[] = [
     // TODO(owner): repository / demo / documentation links
     links: {},
   },
+
+  {
+    id: "ignict",
+    slug: "ignict",
+    title: "IGNICT",
+    shortTitle: "IGNICT",
+    category: "intelligence-platform",
+    status: "production-ready",
+    year: "2026",
+    featured: false,
+
+    tagline: "Bidirectional applicant ↔ opportunity intelligence engine",
+    description:
+      "A bidirectional intelligence platform that matches candidates to opportunities and opportunities to candidates using semantic retrieval, deterministic ranking, hard eligibility filters, and evidence-backed explanations.",
+
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "NLP",
+      "Embeddings",
+      "React",
+      "TypeScript",
+    ],
+
+    metrics: [
+      { value: "94.2", label: "Match score", note: "Decomposed into 8 inspectable signals" },
+      { value: "7 / 8", label: "Strong signals", note: "Evidence-backed requirements" },
+      { value: "1", label: "Critical gap", note: "Deterministic eligibility filter" },
+      { value: "100%", label: "Deterministic ranking", note: "Zero opaque LLM scoring" },
+    ],
+
+    problem:
+      "Most applicant systems reduce a profile to keywords. IGNICT treats the problem as an intelligence and ranking system: answering why a candidate is a good fit for an opportunity — and how strong the evidence is — rather than computing superficial string similarity.",
+
+    architecture: {
+      summary:
+        "A multi-stage bidirectional intelligence pipeline. LLMs assist with structured extraction, normalisation, and explanations, while final scoring is computed by a versioned deterministic ranking engine with hard eligibility filters.",
+      pipeline: [
+        { label: "Profile / Resume & Opportunity Spec" },
+        { label: "Structured Extraction", children: ["LLM-assisted"] },
+        { label: "Normalization" },
+        { label: "Embedding Generation" },
+        { label: "Vector Retrieval", children: ["pgvector"] },
+        { label: "Hard Eligibility Filters" },
+        { label: "Deterministic Matching" },
+        { label: "Component Scoring", children: ["8 Signals"] },
+        { label: "Evidence Generation" },
+        { label: "Ranked Match", children: ["Bidirectional"] },
+      ],
+      stack: [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "pgvector",
+        "Redis",
+        "React",
+        "TypeScript",
+        "Vite",
+      ],
+    },
+
+    algorithms:
+      "Embedding-based semantic discovery with pgvector combined with deterministic component scoring across skill match, experience fit, education fit, project relevance, domain fit, preference fit, eligibility, and critical gaps.",
+
+    validation:
+      "Ranking benchmarks and hard-filter validation to ensure semantic similarity never bypasses non-negotiable eligibility constraints.",
+
+    results:
+      "Inspectable ranking breakdown replacing opaque match percentages with evidence quality, matched requirements, strong signals, and flagged gaps.",
+
+    engineeringDecisions: [
+      {
+        title: "Deterministic Ranking Over LLM Scoring",
+        rationale:
+          "LLMs assist with extraction, normalization, and explanation, while the final ranking score is computed by a versioned deterministic system. This ensures rankings are inspectable, reproducible, and immune to model hallucination or drift.",
+      },
+      {
+        title: "Hard Filters Enforced Before Ranking",
+        rationale:
+          "Hard eligibility constraints (e.g. work authorization, prerequisites) are strictly evaluated before semantic scoring. A semantically similar profile cannot be incorrectly ranked as eligible if hard constraints are violated.",
+      },
+      {
+        title: "Bidirectional Symmetric Engine",
+        rationale:
+          "The same underlying matching pipeline powers both Candidate → Opportunity discovery and Opportunity → Candidate ranking, guaranteeing consistent evaluation logic in both directions.",
+      },
+    ],
+
+    // TODO(owner): repository / demo / documentation links
+    links: {},
+  },
 ];
 
 /** Convenience lookups mirroring the route structure in spec §11. */

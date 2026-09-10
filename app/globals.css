@@ -88,6 +88,19 @@
    directly via var(--button-bg) etc.
    --------------------------------------------------------------------- */
 :root {
+  --color-background: var(--primitive-neutral-950);
+  --color-surface: var(--primitive-neutral-900);
+  --color-surface-raised: var(--primitive-neutral-800);
+  --color-foreground: var(--primitive-neutral-50);
+  --color-foreground-muted: var(--primitive-neutral-300);
+  --color-foreground-faint: var(--primitive-neutral-500);
+  --color-border-subtle: var(--primitive-neutral-800);
+  --color-border-strong: var(--primitive-neutral-700);
+  --color-accent: var(--primitive-signal-green-500);
+  --color-accent-strong: var(--primitive-signal-green-400);
+  --color-accent-wash: var(--primitive-signal-green-900);
+  --color-critical: var(--primitive-critical-500);
+
   --button-bg: var(--color-accent);
   --button-fg: var(--primitive-neutral-950);
   --button-bg-hover: var(--color-accent-strong);

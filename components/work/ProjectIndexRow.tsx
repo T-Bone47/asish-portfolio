@@ -80,6 +80,32 @@ function ProjectTraceVisual({ slug }: { slug: string }) {
           <circle cx="105" cy="4" r="2.5" fill="currentColor" />
         </svg>
       );
+    case "ignict":
+      return (
+        <svg viewBox="0 0 180 32" className="h-8 w-44 select-none font-technical" aria-hidden="true">
+          {/* Bidirectional terminals */}
+          <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+          <circle cx="164" cy="16" r="2.5" fill="currentColor" />
+          {/* Convergence lines */}
+          <path
+            d="M 19,16 L 62,16 L 74,10 L 106,10 L 118,16 L 161,16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="transition-all duration-300"
+          />
+          {/* Match engine core */}
+          <rect x="70" y="4" width="40" height="24" rx="2" fill="var(--color-surface, #121317)" stroke="currentColor" strokeWidth="1" />
+          <text x="90" y="15" fontSize="7" textAnchor="middle" fill="currentColor" letterSpacing="0.5" className="opacity-75">
+            MATCH
+          </text>
+          <text x="90" y="24" fontSize="8.5" fontWeight="600" textAnchor="middle" fill="currentColor">
+            94.2
+          </text>
+          {/* Evidence verification tick */}
+          <line x1="90" y1="28" x2="90" y2="31" stroke="currentColor" strokeWidth="1" strokeDasharray="1 1" />
+        </svg>
+      );
     case "vyaparpulse":
     default:
       return (
@@ -104,7 +130,7 @@ function ProjectTraceVisual({ slug }: { slug: string }) {
  * - Persistent inspection state affordance
  * - Bespoke abstract system trace per project domain
  * - Visual bridge connecting system identity to verified evidence metrics
- * - Zero layout reflow on interaction (opacity & transform only)
+ * - Zero layout reflow on interaction (opacity & color transitions only)
  * - Accessible keyboard navigation & high-contrast focus boundaries
  */
 export function ProjectIndexRow({ project, index }: { project: Project; index: number }) {
@@ -116,7 +142,7 @@ export function ProjectIndexRow({ project, index }: { project: Project; index: n
     <Link
       href={`/work/${project.slug}`}
       className={cn(
-        "group relative grid grid-cols-[auto_1fr_auto] items-baseline gap-x-6 border-b border-border-subtle px-3 py-8 transition-all duration-200 hover:bg-surface/60 hover:pl-5",
+        "group relative grid grid-cols-[auto_1fr_auto] items-baseline gap-x-6 border-b border-border-subtle px-3 py-8 transition-colors duration-150 hover:bg-surface/40",
         isFlagship ? "gap-y-3" : "gap-y-1",
         "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:bg-surface/80"
       )}

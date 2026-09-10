@@ -26,6 +26,7 @@ const ROUTES = [
   '/work/f1-race-manager',
   '/work/ea-fc-intelligence',
   '/work/vyaparpulse',
+  '/work/ignict',
   '/experience',
   '/about',
   '/contact',
