@@ -12,7 +12,15 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <Container as="section" className="py-24">
-      <TechnicalLabel className="text-accent">Selected Systems</TechnicalLabel>
+      <div className="flex flex-wrap items-center gap-3">
+        <TechnicalLabel className="text-accent">Selected Systems</TechnicalLabel>
+        <span
+          aria-hidden="true"
+          className="font-technical text-[11px] uppercase tracking-widest text-foreground-faint"
+        >
+          [SYS.01 · REPOSITORY_INDEX]
+        </span>
+      </div>
       <h1 className="mt-4 font-display text-display-lg uppercase tracking-tight">
         Work
       </h1>

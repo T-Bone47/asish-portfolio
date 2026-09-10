@@ -8,8 +8,13 @@ import { FlowSteps } from "@/components/ui/FlowSteps";
  *  given pipeline/statement rather than inventing separate wording. */
 export function EngineeringStatement() {
   return (
-    <Container as="section" className="py-16 md:py-20">
-      <TechnicalLabel className="text-accent">Engineering Statement</TechnicalLabel>
+    <Container as="section" className="py-16 md:py-20 border-t border-border-subtle">
+      <div className="flex items-center gap-3">
+        <TechnicalLabel className="text-accent">Engineering Statement</TechnicalLabel>
+        <span aria-hidden="true" className="font-technical text-[10px] uppercase tracking-widest text-foreground-faint">
+          [SYSTEM_PIPELINE]
+        </span>
+      </div>
 
       <FlowSteps
         steps={["Data", "Models", "Systems", "Simulation", "Intelligence", "Engineering Decisions"]}

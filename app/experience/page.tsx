@@ -11,7 +11,15 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <Container as="section" className="py-24">
-      <TechnicalLabel className="text-accent">Experience</TechnicalLabel>
+      <div className="flex flex-wrap items-center gap-3">
+        <TechnicalLabel className="text-accent">Experience</TechnicalLabel>
+        <span
+          aria-hidden="true"
+          className="font-technical text-[11px] uppercase tracking-widest text-foreground-faint"
+        >
+          [SYS.02 · CAREER_TRACE]
+        </span>
+      </div>
       <h1 className="mt-4 font-display text-display-lg uppercase tracking-tight">Experience</h1>
       <div className="mt-12">
         <ExperienceTimeline />

@@ -31,6 +31,15 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
+const systemCodes: Record<string, string> = {
+  "live-f1-intelligence": "SYS.F1-01",
+  "f1-lap-time-simulator": "SYS.SIM-02",
+  "racemind-ai": "SYS.AI-03",
+  "f1-race-manager": "SYS.SIM-04",
+  "ea-fc-intelligence": "SYS.AI-05",
+  "vyaparpulse": "SYS.ENG-06",
+};
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
@@ -41,22 +50,34 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   );
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+  const sysCode = systemCodes[project.slug] || "SYS.NODE";
 
   return (
     <article>
       {/* PROJECT HERO + STATUS/YEAR/DISCIPLINE */}
       <Container as="section" className="py-24">
-        <Link
-          href="/work"
-          className="font-technical text-xs uppercase tracking-[0.15em] text-foreground-faint transition-colors hover:text-foreground"
-        >
-          ← All Systems
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link
+            href="/work"
+            className="font-technical text-xs uppercase tracking-[0.15em] text-foreground-faint transition-colors hover:text-foreground"
+          >
+            ← All Systems
+          </Link>
+          <span
+            aria-hidden="true"
+            className="font-technical text-xs uppercase tracking-widest text-accent font-medium"
+          >
+            [{sysCode}]
+          </span>
+        </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <StatusBadge status={project.status} />
           {project.year !== "TBD" && <TechnicalLabel>{project.year}</TechnicalLabel>}
           <TechnicalLabel>{project.category.replace("-", " / ")}</TechnicalLabel>
+          <span className="font-technical text-[11px] uppercase tracking-widest text-foreground-faint">
+            {project.featured ? "FLAGSHIP SYSTEM" : "ENGINEERING MODULE"}
+          </span>
         </div>
 
         <h1 className="mt-4 font-display text-display-xl uppercase leading-[0.95] tracking-tight">
