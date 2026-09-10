@@ -1,0 +1,38 @@
+{
+  "name": "asish-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio for Asish Oliver M — Motorsport Software Engineer · AI/ML Engineer",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.2.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.20",
+    "three": "^0.180.0",
+    "@react-three/fiber": "^9.5.0",
+    "@react-three/drei": "^10.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/three": "^0.180.0",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "postcss": "^8.5.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^16.2.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

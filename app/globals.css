@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   DESIGN TOKENS — Asish Oliver M Portfolio
+   Three-layer architecture (primitive → semantic → component), per the
+   design-system skill. Full rationale: /docs/design-tokens.md
+   Rule: components reference semantic/component tokens only.
+   Nothing outside this file should contain a raw hex value.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   LAYER 1 — PRIMITIVE TOKENS
+   Raw values. Never referenced directly from components.
+   --------------------------------------------------------------------- */
+:root {
+  /* Neutrals — near-black base per spec §8, cool-neutral (not warm/OLED-pure-black) */
+  --primitive-neutral-950: #0a0b0d;
+  --primitive-neutral-900: #121317;
+  --primitive-neutral-800: #1b1d22;
+  --primitive-neutral-700: #2b2e35;
+  --primitive-neutral-500: #8b8f98;
+  --primitive-neutral-300: #b8bbc2;
+  --primitive-neutral-50: #f1f2f4;
+
+  /* Accent — "telemetry green": the spec's single restrained accent.
+     Chosen over red/orange and blue — see docs/design-tokens.md. */
+  --primitive-signal-green-500: #34e27a;
+  --primitive-signal-green-400: #5eeb98;
+  --primitive-signal-green-900: #0e2e1c;
+
+  /* Reserved for destructive/error states only — must stay visually
+     distinct from the accent so "critical" never reads as "active". */
+  --primitive-critical-500: #f0453e;
+
+  /* Fonts — see docs/design-tokens.md for pairing rationale.
+     var(--font-barlow-condensed) etc. are injected by next/font via a
+     className on <html> (see app/layout.tsx); the literal strings
+     after each are the fallback stack if that ever fails to load. */
+  --primitive-font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --primitive-font-body: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --primitive-font-technical: var(--font-jetbrains-mono), "SF Mono", Menlo, monospace;
+}
+
+/* ---------------------------------------------------------------------
+   LAYER 2 — SEMANTIC TOKENS
+   Purpose aliases. Mapped into Tailwind's theme so utilities like
+   bg-background, text-foreground, text-accent, border-subtle work.
+   --------------------------------------------------------------------- */
+@theme {
+  --color-background: var(--primitive-neutral-950);
+  --color-surface: var(--primitive-neutral-900);
+  --color-surface-raised: var(--primitive-neutral-800);
+
+  --color-foreground: var(--primitive-neutral-50);
+  --color-foreground-muted: var(--primitive-neutral-300);
+  --color-foreground-faint: var(--primitive-neutral-500);
+
+  --color-border-subtle: var(--primitive-neutral-800);
+  --color-border-strong: var(--primitive-neutral-700);
+
+  --color-accent: var(--primitive-signal-green-500);
+  --color-accent-strong: var(--primitive-signal-green-400);
+  --color-accent-wash: var(--primitive-signal-green-900);
+
+  --color-critical: var(--primitive-critical-500);
+
+  /* Three functional type roles per spec §9 */
+  --font-display: var(--primitive-font-display);
+  --font-body: var(--primitive-font-body);
+  --font-technical: var(--primitive-font-technical);
+
+  /* Tailwind v4's spacing scale multiplies this base — 0.25rem (4px)
+     reproduces the 4/8/12/16/24/32/48/64/96px scale the layout uses
+     throughout (p-1 … p-24) without any extra token definitions. */
+  --spacing: 0.25rem;
+
+  /* Fluid display sizes for hero / section titles (spec §14, §80) */
+  --text-display-xl: clamp(2.75rem, 3.2vw + 2rem, 6.5rem);
+  --text-display-lg: clamp(2rem, 2vw + 1.5rem, 3.75rem);
+  --text-display-md: clamp(1.5rem, 1vw + 1.25rem, 2.25rem);
+}
+
+/* ---------------------------------------------------------------------
+   LAYER 3 — COMPONENT TOKENS
+   Component-specific aliases layered on top of semantic tokens.
+   Kept in plain :root (not @theme) since these aren't meant to
+   generate their own Tailwind utilities — components read them
+   directly via var(--button-bg) etc.
+   --------------------------------------------------------------------- */
+:root {
+  --button-bg: var(--color-accent);
+  --button-fg: var(--primitive-neutral-950);
+  --button-bg-hover: var(--color-accent-strong);
+
+  --status-online-color: var(--color-accent);
+  --status-online-glow: 0 0 0 rgba(52, 226, 122, 0);
+
+  --hud-line-color: var(--color-border-strong);
+  --hud-label-color: var(--color-foreground-faint);
+}
+
+/* ---------------------------------------------------------------------
+   BASE STYLES
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  /* A very faint accent-tinted vignette at the top of the page —
+     pure black reads flat on a real display; this adds depth without
+     being a visible "effect." Verified at ~5% opacity via screenshot
+     before committing to a value. */
+  background:
+    radial-gradient(ellipse 1200px 600px at 50% -10%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 60%),
+    var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--primitive-neutral-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   SYSTEM BOOT ANIMATION (components/home/SystemBoot.tsx)
+   Pure CSS — no client-side JS needed for the sequence itself. Verified
+   in a real browser (Playwright/Chromium) at several timepoints,
+   including the reduced-motion path, before being wired in here.
+   --------------------------------------------------------------------- */
+@keyframes boot-sequence {
+  0%,
+  78% {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@keyframes boot-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes boot-fill-bar {
+  to {
+    width: 100%;
+  }
+}
+
+.animate-boot-sequence {
+  animation: boot-sequence 2.4s ease-in-out forwards;
+}
+.animate-boot-fade-in {
+  opacity: 0;
+  animation: boot-fade-in 0.3s ease-out forwards;
+}
+.animate-boot-fill-bar {
+  width: 0%;
+  animation: boot-fill-bar 0.6s ease-out forwards;
+}
+
+/* Belt-and-braces: the global reduced-motion rule above already
+   compresses every animation-duration to ~0, but delays aren't
+   duration — without this, a reduced-motion user would still sit
+   through the staggered delays (just with snappy transitions), not
+   skip the sequence. This removes the boot overlay outright. Tested
+   together with the rule above, not assumed compatible. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-boot-sequence {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
