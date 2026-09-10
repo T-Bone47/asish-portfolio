@@ -16,8 +16,7 @@ export const siteIdentity: SiteIdentity = {
   location: "Trichy, Tamil Nadu, India",
   social: {
     email: "dreamteamoliver@gmail.com",
-    // TODO(owner): still no GitHub URL given — do not invent one.
-    github: undefined,
+    github: "https://github.com/T-Bone47",
     linkedin: "https://www.linkedin.com/in/asish-oliver-56b454324",
   },
 };
