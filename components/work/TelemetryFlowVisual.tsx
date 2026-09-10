@@ -104,10 +104,10 @@ export function TelemetryFlowVisual() {
         </div>
         <div className="flex items-center gap-4 font-technical text-xs text-foreground-faint">
           <span className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-            LIVE PIPELINE
+            <span className="h-2 w-2 rounded-full bg-accent" />
+            VERIFIED REPLAY BENCHMARK
           </span>
-          <span>SYSTEM: LFI-2026-PROD</span>
+          <span>SYSTEM: LFI-2026-CORE</span>
         </div>
       </div>
 

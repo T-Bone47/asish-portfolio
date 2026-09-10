@@ -33,6 +33,15 @@ export function SignatureCanvas() {
     let animId: number | null = null;
     let isVisible = true;
 
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+      if (animId) {
+        cancelAnimationFrame(animId);
+        animId = null;
+      }
+    };
+    canvas.addEventListener("webglcontextlost", handleContextLost, false);
+
     try {
       renderer = new THREE.WebGLRenderer({
         canvas,
@@ -197,6 +206,7 @@ export function SignatureCanvas() {
     // Teardown and GPU resource disposal
     return () => {
       if (animId) cancelAnimationFrame(animId);
+      canvas.removeEventListener("webglcontextlost", handleContextLost);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       observer.disconnect();

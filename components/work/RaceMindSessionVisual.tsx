@@ -66,7 +66,7 @@ export function RaceMindSessionVisual() {
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-subtle pb-4">
         <div>
           <span className="font-technical text-xs uppercase tracking-widest text-accent">
-            Telemetry Abstraction & AI Interface
+            Architecture Simulation & AI Interface
           </span>
           <h3 className="mt-1 font-display text-2xl uppercase tracking-tight text-foreground">
             RaceMind-AI Telemetry & Race Engineering Architecture
@@ -74,44 +74,60 @@ export function RaceMindSessionVisual() {
         </div>
         <div className="flex items-center gap-3 font-technical text-xs">
           <span className="rounded-sm border border-border-subtle px-2.5 py-1 text-foreground-muted">
-            UDP INGESTION: 60Hz ACTIVE
+            SPECIFICATION: 60Hz UDP INGESTION
           </span>
           <span className="rounded-sm border border-accent/40 bg-accent/10 px-2.5 py-1 text-accent">
-            CLAUDE API CONTEXT VECTOR
+            DEMO SESSION STATE
           </span>
         </div>
       </div>
 
-      {/* Verified Status Banner */}
-      <div className="mt-4 rounded-sm border border-border-subtle bg-surface/50 px-4 py-2.5 font-technical text-xs text-foreground-muted">
-        <span className="text-accent font-semibold mr-2">[VERIFIED STATUS]</span>
-        FastAPI backend and session abstraction fully tested. Codemasters F1 telemetry stream
-        validated. Frontend desktop console in progress.
+      {/* Verified Status & Simulation Notice Banner */}
+      <div className="mt-4 space-y-2">
+        <div className="rounded-sm border border-border-subtle bg-surface/50 px-4 py-2.5 font-technical text-xs text-foreground-muted">
+          <span className="text-accent font-semibold mr-2">[VERIFIED STATUS]</span>
+          FastAPI backend and session abstraction fully tested. Codemasters F1 telemetry stream
+          validated. Frontend desktop console in progress.
+        </div>
+        <div className="rounded-sm border border-border-subtle/80 bg-surface-subtle/40 px-4 py-2 font-technical text-[11px] text-foreground-faint">
+          <span className="text-foreground-muted font-semibold mr-2">[ILLUSTRATIVE DEMO SESSION]</span>
+          The session telemetry values below (tyre wear %, temps, fuel delta) represent an
+          illustrative simulation state demonstrating how normalized session state vectors feed the
+          AI engineer reasoning pipeline — not captured live hardware logs.
+        </div>
       </div>
 
       {/* Live Session State Bus Matrix */}
       <div className="mt-6">
         <div className="mb-2 font-technical text-xs uppercase tracking-widest text-foreground-faint">
-          Real-Time Normalized Session State Bus
+          Illustrative Normalized Session State Bus (Architecture Simulation)
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div className="rounded-sm border border-border-subtle bg-surface/80 p-3">
-            <div className="font-technical text-[10px] uppercase text-foreground-faint">TYRE WEAR & TEMP</div>
+            <div className="font-technical text-[10px] uppercase text-foreground-faint">
+              SIMULATED TYRE WEAR & TEMP
+            </div>
             <div className="mt-1 font-technical text-sm font-semibold text-foreground">FR: 74% / 106°C</div>
             <div className="font-technical text-[10px] text-accent/80">Compound: Hard (C2)</div>
           </div>
           <div className="rounded-sm border border-border-subtle bg-surface/80 p-3">
-            <div className="font-technical text-[10px] uppercase text-foreground-faint">FUEL STATUS</div>
+            <div className="font-technical text-[10px] uppercase text-foreground-faint">
+              SIMULATED FUEL DELTA
+            </div>
             <div className="mt-1 font-technical text-sm font-semibold text-foreground">+0.42 Laps</div>
             <div className="font-technical text-[10px] text-accent/80">Flow: 98.4 kg/h peak</div>
           </div>
           <div className="rounded-sm border border-border-subtle bg-surface/80 p-3">
-            <div className="font-technical text-[10px] uppercase text-foreground-faint">GAP AHEAD (DRS)</div>
+            <div className="font-technical text-[10px] uppercase text-foreground-faint">
+              SIMULATED GAP AHEAD (DRS)
+            </div>
             <div className="mt-1 font-technical text-sm font-semibold text-foreground">-1.24 s</div>
             <div className="font-technical text-[10px] text-accent/80">Delta closing: -0.15s/L</div>
           </div>
           <div className="rounded-sm border border-border-subtle bg-surface/80 p-3">
-            <div className="font-technical text-[10px] uppercase text-foreground-faint">PIT WINDOW</div>
+            <div className="font-technical text-[10px] uppercase text-foreground-faint">
+              SIMULATED PIT WINDOW
+            </div>
             <div className="mt-1 font-technical text-sm font-semibold text-accent">OPEN (L18–21)</div>
             <div className="font-technical text-[10px] text-foreground-muted">Est. Rejoin: P6 (Clean Air)</div>
           </div>
@@ -186,7 +202,7 @@ export function RaceMindSessionVisual() {
             <span className="font-technical text-[10px] uppercase tracking-widest text-accent">
               RaceMind-AI Engineer Response [SYNTHESIZED PIT RADIO]
             </span>
-            <span className="font-technical text-[10px] text-foreground-faint">LATENCY: 420ms</span>
+            <span className="font-technical text-[10px] text-foreground-faint">MODE: ASYNC STREAMING</span>
           </div>
           <div className="mt-1.5 font-technical text-sm text-foreground">
             {scenario.engineerResponse}

@@ -91,16 +91,23 @@ export function NumericalDecomposition() {
       </div>
 
       {/* Engineering note banner */}
-      <div className="mt-4 rounded-sm border border-accent/30 bg-accent/5 px-4 py-2.5 font-technical text-xs text-foreground-muted">
-        <span className="font-semibold text-accent mr-2">[DETERMINISTIC PHYSICS]</span>
-        Solved lap by lap via numerical forward/backward integration of power, aero, and tyre grip
-        differential equations — zero statistical or machine-learning approximations.
+      <div className="mt-4 space-y-2">
+        <div className="rounded-sm border border-accent/30 bg-accent/5 px-4 py-2.5 font-technical text-xs text-foreground-muted">
+          <span className="font-semibold text-accent mr-2">[DETERMINISTIC PHYSICS]</span>
+          Solved lap by lap via numerical forward/backward integration of power, aero, and tyre grip
+          differential equations — zero statistical or machine-learning approximations.
+        </div>
+        <div className="rounded-sm border border-border-subtle/80 bg-surface-subtle/40 px-4 py-2 font-technical text-[11px] text-foreground-faint">
+          <span className="text-foreground-muted font-semibold mr-2">[ILLUSTRATIVE MODEL REGIMES]</span>
+          The cornering regimes below represent illustrative numerical solver states demonstrating
+          friction circle boundary limits — not track telemetry recordings.
+        </div>
       </div>
 
       {/* Interactive condition selector tabs */}
       <div className="mt-6">
         <div className="mb-2 font-technical text-xs uppercase tracking-widest text-foreground-faint">
-          Select Operating Regime:
+          Select Illustrative Regime (2-DOF Model Verification):
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {SECTOR_CONDITIONS.map((item) => {
