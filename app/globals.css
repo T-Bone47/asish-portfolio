@@ -100,6 +100,8 @@
   --color-accent-strong: var(--primitive-signal-green-400);
   --color-accent-wash: var(--primitive-signal-green-900);
   --color-critical: var(--primitive-critical-500);
+  --color-amber: #f59e0b;
+  --color-cyan: #38bdf8;
 
   --button-bg: var(--color-accent);
   --button-fg: var(--primitive-neutral-950);
@@ -128,18 +130,38 @@
 
 html {
   color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  /* A very faint accent-tinted vignette at the top of the page —
-     pure black reads flat on a real display; this adds depth without
-     being a visible "effect." Verified at ~5% opacity via screenshot
-     before committing to a value. */
+  /* A very faint accent-tinted vignette at the top of the page */
   background:
     radial-gradient(ellipse 1200px 600px at 50% -10%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 60%),
     var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Engineered subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primitive-neutral-800);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primitive-neutral-700);
 }
 
 ::selection {

@@ -4,6 +4,7 @@ import { seo } from "@/data/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { SystemCursor } from "@/components/ui/SystemCursor";
 import "./globals.css";
 
 // NOTE: these `variable` names deliberately do NOT match the semantic
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${technicalFont.variable}`}>
       <body className="flex min-h-screen flex-col bg-background text-foreground">
+        <SystemCursor />
         <Header />
         <MotionProvider>
           <main id="main-content" tabIndex={-1} className="flex-1 outline-none">

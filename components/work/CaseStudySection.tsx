@@ -6,15 +6,24 @@ import { TechnicalLabel } from "@/components/ui/TechnicalLabel";
 export function CaseStudySection({
   label,
   children,
+  index,
 }: {
   label: string;
   children: React.ReactNode;
+  index?: string;
 }) {
   return (
     <section className="border-t border-border-subtle py-12 first:border-t-0 first:pt-0">
-      <TechnicalLabel as="h2" className="text-accent">
-        {label}
-      </TechnicalLabel>
+      <div className="flex items-center gap-2.5">
+        {index && (
+          <span className="font-technical text-xs tracking-widest text-accent font-semibold">
+            {index} {"//"}
+          </span>
+        )}
+        <TechnicalLabel as="h2" className={index ? "text-foreground" : "text-accent"}>
+          {label}
+        </TechnicalLabel>
+      </div>
       <div className="mt-6">{children}</div>
     </section>
   );

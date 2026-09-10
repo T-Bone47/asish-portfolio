@@ -91,16 +91,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </Container>
 
       <Container as="section">
-        {/* ENGINEERING PROBLEM — omitted: no project has verified problem-statement prose yet */}
+        {/* ENGINEERING PROBLEM */}
         {project.problem && (
-          <CaseStudySection label="Engineering Problem">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.problem}</p>
+          <CaseStudySection index="02" label="Engineering Problem">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.problem}</p>
           </CaseStudySection>
         )}
 
         {project.architecture && (
-          <CaseStudySection label="Architecture">
-            <p className="max-w-2xl font-body text-foreground-muted">
+          <CaseStudySection index="03" label="System Architecture">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">
               {project.architecture.summary}
             </p>
             {project.architecture.pipeline && (
@@ -118,41 +118,41 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.slug === "ignict" && <IgnictMatchingVisual />}
 
         {project.implementation && (
-          <CaseStudySection label="Implementation">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.implementation}</p>
+          <CaseStudySection index="04" label="Implementation">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.implementation}</p>
           </CaseStudySection>
         )}
 
         {project.algorithms && (
-          <CaseStudySection label="Algorithms / Models">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.algorithms}</p>
+          <CaseStudySection index="04" label="Algorithms & Numerical Models">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.algorithms}</p>
           </CaseStudySection>
         )}
 
         {project.validation && (
-          <CaseStudySection label="Validation">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.validation}</p>
+          <CaseStudySection index="05" label="Validation & Verification">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.validation}</p>
           </CaseStudySection>
         )}
 
         {(project.metrics?.length || project.results) && (
-          <CaseStudySection label="Performance / Results">
+          <CaseStudySection index="06" label="Performance & Results">
             {project.metrics && project.metrics.length > 0 && (
               <MetricGrid metrics={project.metrics} />
             )}
             {project.results && (
-              <p className="mt-8 max-w-2xl font-body text-foreground-muted">{project.results}</p>
+              <p className="mt-8 max-w-2xl font-body text-foreground-muted leading-relaxed">{project.results}</p>
             )}
           </CaseStudySection>
         )}
 
         {project.engineeringDecisions && project.engineeringDecisions.length > 0 && (
-          <CaseStudySection label="Engineering Decisions">
+          <CaseStudySection index="07" label="Engineering Decisions">
             <dl className="max-w-2xl space-y-6">
               {project.engineeringDecisions.map((decision) => (
-                <div key={decision.title}>
-                  <dt className="font-display text-lg uppercase tracking-tight">{decision.title}</dt>
-                  <dd className="mt-1 font-body text-foreground-muted">{decision.rationale}</dd>
+                <div key={decision.title} className="border-l-2 border-accent/40 pl-4 py-1">
+                  <dt className="font-display text-lg uppercase tracking-tight text-foreground">{decision.title}</dt>
+                  <dd className="mt-1 font-body text-sm text-foreground-muted leading-relaxed">{decision.rationale}</dd>
                 </div>
               ))}
             </dl>
@@ -160,14 +160,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         )}
 
         {project.limitations && (
-          <CaseStudySection label="Limitations">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.limitations}</p>
+          <CaseStudySection index="07" label="Known Limitations">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.limitations}</p>
           </CaseStudySection>
         )}
 
         {project.currentState && (
-          <CaseStudySection label="Current State">
-            <p className="max-w-2xl font-body text-foreground-muted">{project.currentState}</p>
+          <CaseStudySection index="07" label="Current System State">
+            <p className="max-w-2xl font-body text-foreground-muted leading-relaxed">{project.currentState}</p>
           </CaseStudySection>
         )}
 

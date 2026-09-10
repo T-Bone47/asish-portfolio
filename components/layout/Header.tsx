@@ -73,10 +73,10 @@ export function Header() {
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "group relative flex items-baseline gap-1.5 py-1 font-technical text-xs uppercase tracking-[0.15em] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent",
+                    "group relative flex items-baseline gap-1.5 px-2.5 py-1 font-technical text-xs uppercase tracking-[0.15em] transition-all duration-150 rounded-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent",
                     isActive
-                      ? "text-accent font-medium"
-                      : "text-foreground-muted hover:text-foreground"
+                      ? "text-accent font-medium bg-surface/70 border border-accent/30 shadow-[0_0_12px_rgba(52,226,122,0.08)]"
+                      : "text-foreground-muted hover:text-foreground hover:bg-surface/30 border border-transparent"
                   )}
                 >
                   <span
@@ -89,14 +89,19 @@ export function Header() {
                   </span>
                   <span>{item.label}</span>
                   {item.href === "/work" && (
-                    <span className="text-[9px] text-foreground-faint tabular-nums">
+                    <span
+                      className={cn(
+                        "text-[9px] tabular-nums",
+                        isActive ? "text-accent/80" : "text-foreground-faint"
+                      )}
+                    >
                       /07
                     </span>
                   )}
                   {isActive && (
                     <span
                       aria-hidden="true"
-                      className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
+                      className="absolute -bottom-1.5 left-2 right-2 h-0.5 bg-accent shadow-[0_0_8px_rgba(52,226,122,0.8)]"
                     />
                   )}
                 </Link>

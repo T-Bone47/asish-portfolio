@@ -134,7 +134,7 @@ function ProjectTraceVisual({ slug }: { slug: string }) {
  * - Accessible keyboard navigation & high-contrast focus boundaries
  */
 export function ProjectIndexRow({ project, index }: { project: Project; index: number }) {
-  const isFlagship = project.featured;
+  const isFlagship = project.featured || project.slug === "ignict";
   const number = String(index + 1).padStart(2, "0");
   const previewMetric = project.metrics?.[0];
 
@@ -204,11 +204,14 @@ export function ProjectIndexRow({ project, index }: { project: Project; index: n
           {project.year !== "TBD" && <TechnicalLabel>{project.year}</TechnicalLabel>}
         </div>
 
-        {isFlagship && (
-          <p className="mt-3 max-w-xl font-body text-sm text-foreground-muted">
-            {project.description}
-          </p>
-        )}
+        <p
+          className={cn(
+            "mt-2.5 font-body text-foreground-muted",
+            isFlagship ? "text-sm max-w-xl" : "text-xs max-w-lg line-clamp-2"
+          )}
+        >
+          {project.description}
+        </p>
 
         {/* Technologies list */}
         {project.technologies.length > 0 && (
@@ -229,10 +232,12 @@ export function ProjectIndexRow({ project, index }: { project: Project; index: n
           aria-hidden="true"
           className="mt-3 flex flex-wrap items-center gap-x-4 text-[10px] font-technical uppercase tracking-widest text-foreground-faint opacity-60 transition-opacity duration-150 group-hover:opacity-100 group-hover:text-accent/90"
         >
-          <span>TYPE: {project.category.toUpperCase()}</span>
+          <span>
+            TYPE: {project.slug === "ignict" ? "INTELLIGENCE-SYSTEM" : project.category.toUpperCase()}
+          </span>
           <span>·</span>
           <span>PIPELINE: {project.status.toUpperCase()}</span>
-          {project.featured && (
+          {isFlagship && (
             <>
               <span>·</span>
               <span className="text-accent">FLAGSHIP_ARCHITECTURE</span>

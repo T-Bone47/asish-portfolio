@@ -68,7 +68,64 @@ export function AboutContent() {
         </div>
       </div>
 
-      {/* 3. Verified Education */}
+      {/* 3. Selected Engineering Principles */}
+      <div className="border-t border-border-subtle pt-10">
+        <div className="flex items-center justify-between border-b border-border-subtle/70 pb-3">
+          <TechnicalLabel className="text-accent">Selected Principles</TechnicalLabel>
+          <span className="font-technical text-[10px] uppercase tracking-widest text-foreground-faint">
+            [CORE_AXIOMS]
+          </span>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-sm border border-border-subtle bg-surface/30 p-5">
+            <div className="font-technical text-xs text-accent font-semibold">01 // ARCHITECTURE</div>
+            <h4 className="mt-1 font-display text-lg uppercase tracking-tight text-foreground">
+              Systems Over Isolated Scripts
+            </h4>
+            <p className="mt-2 font-body text-xs text-foreground-muted leading-relaxed">
+              A standalone model or notebook is only an experiment. Real engineering value requires
+              reliable ingestion pipelines, canonical schemas, strict normalisation, and deterministically
+              replayable execution.
+            </p>
+          </div>
+
+          <div className="rounded-sm border border-border-subtle bg-surface/30 p-5">
+            <div className="font-technical text-xs text-accent font-semibold">02 // RELIABILITY</div>
+            <h4 className="mt-1 font-display text-lg uppercase tracking-tight text-foreground">
+              Deterministic Rigor Over Opaque Outputs
+            </h4>
+            <p className="mt-2 font-body text-xs text-foreground-muted leading-relaxed">
+              Language models and heuristics assist with extraction and explanation; versioned deterministic
+              math must score and rank. Rankings must be auditable, inspectable, and immune to drift.
+            </p>
+          </div>
+
+          <div className="rounded-sm border border-border-subtle bg-surface/30 p-5">
+            <div className="font-technical text-xs text-accent font-semibold">03 // EVIDENCE</div>
+            <h4 className="mt-1 font-display text-lg uppercase tracking-tight text-foreground">
+              Telemetry Is Ground Truth
+            </h4>
+            <p className="mt-2 font-body text-xs text-foreground-muted leading-relaxed">
+              Whether analyzing slip angle deltas across high-speed chicanes or candidate requirement signals,
+              ground-truth telemetry and evidence trails always take precedence over speculation.
+            </p>
+          </div>
+
+          <div className="rounded-sm border border-border-subtle bg-surface/30 p-5">
+            <div className="font-technical text-xs text-accent font-semibold">04 // SIMPLICITY</div>
+            <h4 className="mt-1 font-display text-lg uppercase tracking-tight text-foreground">
+              Mechanical Sympathy & Restraint
+            </h4>
+            <p className="mt-2 font-body text-xs text-foreground-muted leading-relaxed">
+              Software is best when designed with deep respect for underlying system resources: sub-millisecond
+              P50 latencies, lean memory footprints, minimal dependencies, and crisp mental models.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Verified Education */}
       <div className="border-t border-border-subtle pt-8">
         <div className="flex items-center gap-3">
           <TechnicalLabel>Education</TechnicalLabel>

@@ -27,7 +27,16 @@ export function ProjectIndex() {
       {projects.map((project, index) => {
         const isFirstSupporting = !project.featured && projects[index - 1]?.featured;
         return (
-          <div key={project.id} className={isFirstSupporting ? "mt-8" : undefined}>
+          <div key={project.id}>
+            {isFirstSupporting && (
+              <div
+                aria-hidden="true"
+                className="mt-10 flex items-center justify-between border-b border-border-subtle/40 px-3 py-3 font-technical text-[10px] uppercase tracking-widest text-foreground-faint"
+              >
+                <span>{"//"} ARCHIVED SYSTEMS & RESEARCH ENGINES</span>
+                <span>SYS.04 — SYS.07</span>
+              </div>
+            )}
             <ProjectIndexRow project={project} index={index} />
           </div>
         );
