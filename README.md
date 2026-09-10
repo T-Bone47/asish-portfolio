@@ -35,11 +35,23 @@ Two source documents drive this repository:
   - Mobile: `390 × 844` (including mobile navigation panel open/close state)
   - Result: **0 console errors across all routes and viewports**.
 
-### ACTIVE (Phase 2G Execution)
-- [ ] **Phase 2G-B — Unified Motion Architecture**: Centralized GSAP + ScrollTrigger + Lenis runtime in `lib/motion/runtime.ts` driven by a single synchronized GSAP ticker RAF, with clean lifecycle disposal and strict `prefers-reduced-motion` compliance.
-- [ ] **Phase 2G-C — Living Signature Visual**: Transitioning the SVG signature visual from static trace into a responsive instrument panel with coordinate resolution, progressive spline drawing, sector node pulses, and telemetry sweep.
-- [ ] **Phase 2G-D — WebGL Abstract Enhancement**: Three.js / R3F abstract 3D coordinate trace layered over SVG grid with low draw calls, capped DPR, visibility-based RAF pause, and zero-impact fallback.
-- [ ] **Phase 2G-E — Case-Study Engineering Visualizations**: Specialized pipeline architectures and numerical decomposition diagrams for flagship systems.
+- [x] **Unified Motion Architecture (Phase 2G-B)**: Centralized GSAP + ScrollTrigger + Lenis runtime in `lib/motion/runtime.ts` driven strictly by a single synchronized GSAP ticker RAF, with clean lifecycle disposal and strict `prefers-reduced-motion` compliance.
+- [x] **Living Signature Visual (Phase 2G-C)**: Responsive telemetry instrument panel with coordinate resolution, progressive spline drawing, sector node pulses, scanning radar line, and live mouse HUD (`LOC: XXXX / YYYY`).
+- [x] **WebGL Abstract Enhancement (Phase 2G-D)**: Three.js abstract 3D coordinate spline with 50 telemetry data particles, mouse camera parallax, low draw calls (<2), capped DPR (1.5 max), visibility-based RAF pause (`IntersectionObserver`), and GPU disposal on unmount.
+- [x] **Case-Study Engineering Visualizations (Phase 2G-E)**:
+  - High-precision telemetry architecture pipeline (`components/work/ArchitecturePipeline.tsx`).
+  - Interactive multi-provider event processing flow visualizer for `live-f1-intelligence` (`components/work/TelemetryFlowVisual.tsx`).
+  - G-G friction circle envelope and analytical solver breakdown for `f1-lap-time-simulator` (`components/work/NumericalDecomposition.tsx`).
+  - Real-time telemetry abstraction & contextual AI pit-wall interface for `racemind-ai` (`components/work/RaceMindSessionVisual.tsx`).
+  - High-precision project index rows with active telemetry readout and left indicator pulse (`components/work/ProjectIndexRow.tsx`).
+- [x] **Accessibility Hardening (Phase 2H-A)**:
+  - Skip-to-content accessible link (`#main-content`) with keyboard focus ring.
+  - Mobile menu drawer `Escape` key listener.
+  - WCAG 2.1 AA compliant contrast ratios across all semantic tokens (telemetry green `#34e27a` at 11.2:1 against `#0a0b0d`).
+- [x] **Regression & Content Integrity Automation (Phase 2H-C)**: `npm run test:integrity` verifying zero academic inflation, strictly verified education (VIT-AP University), exact 6 project records, and all required visualization components.
+
+### ACTIVE / NEXT STEPS
+- [ ] Final production verification and deployment configuration.
 
 ### NOT IMPLEMENTED
 - Custom desktop-only coordinate crosshair cursor (desktop only, optional enhancement).

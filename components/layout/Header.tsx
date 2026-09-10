@@ -159,5 +159,6 @@ export function Header() {
         </Container>
       </nav>
     </header>
-  );
+  </>
+);
 }
