@@ -2,28 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { isReducedMotion } from "@/lib/motion/runtime";
 
-/**
- * Section-reveal-on-scroll, deliberately not GSAP+ScrollTrigger.
- *
- * That stack can't be installed or tested in the sandbox this was
- * built in (no network — see the "content: fill gaps" and diagnostic
- * commits), but the underlying ask — "section reveals" — doesn't
- * actually need a 70kb animation library: IntersectionObserver +
- * a CSS transition does the same job in ~30 lines with zero new
- * dependencies. Spec §35 (dependency discipline) asks "does this
- * materially improve the experience?" before adding a dependency —
- * for this specific effect, it doesn't.
- *
- * If GSAP's timeline/stagger control is wanted later for the richer
- * effects (telemetry trace drawing, architecture-flow animation),
- * that's a real reason to add it — this component isn't a stand-in
- * for those, just for plain reveal-on-scroll.
- *
- * Respects prefers-reduced-motion via the transition-duration rule
- * already in globals.css (Phase 1) — reduced-motion users see the
- * final state immediately, no observer logic needed for that part.
- */
 export function Reveal({
   children,
   className,
@@ -37,6 +17,11 @@ export function Reveal({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (isReducedMotion()) {
+      requestAnimationFrame(() => setVisible(true));
+      return;
+    }
+
     const node = ref.current;
     if (!node) return;
 
@@ -47,7 +32,7 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.08 }
     );
 
     observer.observe(node);

@@ -3,6 +3,7 @@ import { Barlow_Condensed, Inter, JetBrains_Mono } from "next/font/google";
 import { seo } from "@/data/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 // NOTE: these `variable` names deliberately do NOT match the semantic
@@ -50,7 +51,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${technicalFont.variable}`}>
       <body className="flex min-h-screen flex-col bg-background text-foreground">
         <Header />
-        <main className="flex-1">{children}</main>
+        <MotionProvider>
+          <main className="flex-1">{children}</main>
+        </MotionProvider>
         <Footer />
       </body>
     </html>
