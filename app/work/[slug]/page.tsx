@@ -8,6 +8,9 @@ import { StatusBadge } from "@/components/ui/Badge";
 import { CaseStudySection } from "@/components/work/CaseStudySection";
 import { ArchitecturePipeline } from "@/components/work/ArchitecturePipeline";
 import { MetricGrid } from "@/components/work/MetricGrid";
+import { TelemetryFlowVisual } from "@/components/work/TelemetryFlowVisual";
+import { NumericalDecomposition } from "@/components/work/NumericalDecomposition";
+import { RaceMindSessionVisual } from "@/components/work/RaceMindSessionVisual";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -84,6 +87,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             )}
           </CaseStudySection>
         )}
+
+        {/* Specialized flagship engineering visualizers */}
+        {project.slug === "live-f1-intelligence" && <TelemetryFlowVisual />}
+        {project.slug === "f1-lap-time-simulator" && <NumericalDecomposition />}
+        {project.slug === "racemind-ai" && <RaceMindSessionVisual />}
 
         {project.implementation && (
           <CaseStudySection label="Implementation">

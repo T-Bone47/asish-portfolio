@@ -2,6 +2,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 let lenisInstance: Lenis | null = null;
 let tickerFn: ((time: number) => void) | null = null;
 let isInitialized = false;
