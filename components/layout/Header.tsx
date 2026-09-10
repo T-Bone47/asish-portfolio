@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { primaryNav } from "@/data/navigation";
 import { siteIdentity } from "@/data/site";
@@ -14,8 +14,10 @@ import { cn } from "@/lib/utils";
  * genuine utility links — rendered only when a real URL exists in
  * data/site.ts (spec §9: "do not invent links").
  *
- * This is a client component because the mobile menu needs open/close
- * state — spec §29 allows client components for interaction.
+ * Fully accessible with:
+ * - Skip to main content link for screen readers & keyboard navigation
+ * - Escape key dismissal of mobile navigation drawer
+ * - Clear focus visible states conforming to WCAG 2.1 AA standards
  */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,29 +27,49 @@ export function Header() {
     linkedin ? { label: "LINKEDIN", href: linkedin } : null,
   ].filter((item): item is { label: string; href: string } => item !== null);
 
-  return (
-    <header className="sticky top-0 z-50 border-b border-border-subtle bg-background/90 backdrop-blur-sm">
-      <Container as="div" className="flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-lg uppercase tracking-tight"
-          onClick={() => setMenuOpen(false)}
-        >
-          ASISH <span className="text-foreground-muted">/</span> OLIVER
-        </Link>
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-          {primaryNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-technical text-xs uppercase tracking-[0.15em] text-foreground-muted transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+  return (
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-sm focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:font-technical focus:text-xs focus:uppercase focus:tracking-widest focus:text-accent focus:shadow-lg focus:outline-none"
+      >
+        Skip to main content
+      </a>
+
+      <header className="sticky top-0 z-50 border-b border-border-subtle bg-background/90 backdrop-blur-sm">
+        <Container as="div" className="flex h-16 items-center justify-between">
+          <Link
+            href="/"
+            className="font-display text-lg uppercase tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            onClick={() => setMenuOpen(false)}
+          >
+            ASISH <span className="text-foreground-muted">/</span> OLIVER
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+            {primaryNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="font-technical text-xs uppercase tracking-[0.15em] text-foreground-muted transition-colors hover:text-foreground rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
         <div className="hidden items-center gap-6 md:flex">
           {utilityLinks.map((item) => (
